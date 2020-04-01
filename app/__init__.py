@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from flask import Flask, request, current_app
+=======
+from flask import Flask
+>>>>>>> parent of f548447... Chapter 7: Error Handling (v0.7)
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -14,6 +18,7 @@ from redis import Redis
 import rq
 from config import Config
 
+<<<<<<< HEAD
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
@@ -97,3 +102,13 @@ def get_locale():
 
 
 from app import models
+=======
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+login = LoginManager(app)
+login.login_view = 'login'
+
+from app import routes, models
+>>>>>>> parent of f548447... Chapter 7: Error Handling (v0.7)
